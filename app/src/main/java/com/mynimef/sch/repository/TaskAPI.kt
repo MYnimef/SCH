@@ -11,4 +11,7 @@ interface TaskAPI {
 
     @GET("/stellardiver/ebookdata/best")
     fun getBestSellers(): Call<Array<BookInfo>>
+
+    @GET("/stellardiver/ebookdata/similar")
+    fun getSimilar(): Call<Array<Carousel>>
 }

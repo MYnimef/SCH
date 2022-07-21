@@ -25,7 +25,7 @@ class FirstFragmentViewModel: ViewModel() {
     }
 
     fun update() {
-        Repository.getCarouselImages(carousel)
+        Repository.getCarousel(carousel)
         Repository.getBestSellers(bestSellers)
     }
 }

@@ -75,4 +75,30 @@ class Network: NetworkAPI {
             }
         })
     }
+
+    override fun getSimilar(handler: Handler) {
+        val message = Message()
+        task.getSimilar().enqueue(object: Callback<Array<Carousel>> {
+            override fun onResponse(
+                call: Call<Array<Carousel>>,
+                response: Response<Array<Carousel>>
+            ) {
+                val callback = response.body()
+
+                callback?.let {
+                    message.arg1 = 0
+                    message.obj = callback
+                } ?: run {
+                    message.arg1 = 1
+                }
+
+                handler.sendMessage(message)
+            }
+
+            override fun onFailure(call: Call<Array<Carousel>>, t: Throwable) {
+                message.arg1 = -1
+                handler.sendMessage(message)
+            }
+        })
+    }
 }

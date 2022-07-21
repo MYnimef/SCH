@@ -11,7 +11,7 @@ object Repository {
 
     private val network: NetworkAPI = Network()
 
-    fun getCarouselImages(data: MutableLiveData<Array<Carousel>>) {
+    fun getCarousel(data: MutableLiveData<Array<Carousel>>) {
         val handler = Handler(Looper.getMainLooper()) {
             val res = it.arg1
             if (res == 0) {
@@ -37,5 +37,19 @@ object Repository {
             true
         }
         network.getBestSellers(handler)
+    }
+
+    fun getSimilar(data: MutableLiveData<Array<Carousel>>) {
+        val handler = Handler(Looper.getMainLooper()) {
+            val res = it.arg1
+            if (res == 0) {
+                data.postValue(it.obj as Array<Carousel>)
+            } else if (res == 1) {
+
+            } else {
+            }
+            true
+        }
+        network.getSimilar(handler)
     }
 }

@@ -6,4 +6,5 @@ interface NetworkAPI {
 
     fun getCarousel(handler: Handler)
     fun getBestSellers(handler: Handler)
+    fun getSimilar(handler: Handler)
 }

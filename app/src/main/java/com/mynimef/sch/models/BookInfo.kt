@@ -1,5 +1,7 @@
 package com.mynimef.sch.models
 
+import java.io.Serializable
+
 data class BookInfo(
     val id: Int,
     val title: String,
@@ -7,4 +9,4 @@ data class BookInfo(
     val price: Double,
     val image: String,
     val rate: RateInfo
-)
+): Serializable

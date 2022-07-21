@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
@@ -62,7 +64,7 @@ class FirstFragment: Fragment() {
         carousel.adapter = adapter
 
         val snapHelper = PagerSnapHelper()
-        snapHelper.attachToRecyclerView(binding.recyclerViewCarousel)
+        snapHelper.attachToRecyclerView(carousel)
 
         viewModel.getCarousel().observe(viewLifecycleOwner) {
             adapter.setData(it)
@@ -119,6 +121,8 @@ class FirstFragment: Fragment() {
 
     private fun onBestSellerCreated(bestSeller: RecyclerView) {
         val changeFragment = { book: BookInfo ->
+            setFragmentResult("book", bundleOf("data" to book))
+
             requireActivity().supportFragmentManager.commit {
                 setReorderingAllowed(true)
                 addToBackStack(null)
