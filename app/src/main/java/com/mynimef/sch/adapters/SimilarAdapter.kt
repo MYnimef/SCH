@@ -11,7 +11,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.mynimef.sch.R
 import com.mynimef.sch.models.ImagePreview
 
-class CarouselAdapter: RecyclerView.Adapter<CarouselAdapter.ViewHolder>() {
+class SimilarAdapter: RecyclerView.Adapter<SimilarAdapter.ViewHolder>() {
 
     private var dataSet: Array<ImagePreview> = emptyArray()
 
@@ -22,7 +22,7 @@ class CarouselAdapter: RecyclerView.Adapter<CarouselAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.adapter_carousel, viewGroup, false)
+            .inflate(R.layout.adapter_similar, viewGroup, false)
 
         return ViewHolder(view)
     }

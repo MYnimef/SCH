@@ -1,5 +1,6 @@
 package com.mynimef.sch.fragments
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.mynimef.sch.adapters.CarouselAdapter
+import com.mynimef.sch.adapters.SimilarAdapter
 import com.mynimef.sch.databinding.FragmentSecondBinding
 import com.mynimef.sch.models.BookInfo
 
@@ -60,6 +61,7 @@ class SecondFragment: Fragment() {
             binding.textAuthor.text = book.author
             binding.textRating.text = book.rate.score.toString()
             binding.textAmount.text = "(" + book.rate.amount.toString() + ")"
+            binding.textPrice.text = book.price.toString() + " €"
         }
 
         onCreateSimilarRecycler(binding.recyclerAlsoLike)
@@ -71,21 +73,33 @@ class SecondFragment: Fragment() {
     }
 
     fun onCreateSimilarRecycler(similar: RecyclerView) {
-        similar.layoutManager = LinearLayoutManager(
+        similar.layoutManager = CustomLinearLayoutManager(
             context,
             LinearLayoutManager.HORIZONTAL,
             false
         )
         similar.clipToOutline = true
 
-        val adapter = CarouselAdapter()
+        val adapter = SimilarAdapter()
         similar.adapter = adapter
-
-        val snapHelper = PagerSnapHelper()
-        snapHelper.attachToRecyclerView(similar)
 
         viewModel.getSimilar().observe(viewLifecycleOwner) {
             adapter.setData(it)
+        }
+    }
+
+    class CustomLinearLayoutManager(
+        context: Context?,
+        orientation: Int,
+        reverseLayout: Boolean
+    ): LinearLayoutManager(context, orientation, reverseLayout) {
+
+        override fun getPaddingLeft(): Int {
+            return 80
+        }
+
+        override fun getPaddingRight(): Int {
+            return 80
         }
     }
 }

@@ -3,7 +3,7 @@ package com.mynimef.sch.repository
 import android.os.Handler
 import android.os.Message
 import com.mynimef.sch.models.BookInfo
-import com.mynimef.sch.models.Carousel
+import com.mynimef.sch.models.ImagePreview
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,10 +26,10 @@ class Network: NetworkAPI {
 
     override fun getCarousel(handler: Handler) {
         val message = Message()
-        task.getCarousel().enqueue(object: Callback<Array<Carousel>> {
+        task.getCarousel().enqueue(object: Callback<Array<ImagePreview>> {
             override fun onResponse(
-                call: Call<Array<Carousel>>,
-                response: Response<Array<Carousel>>
+                call: Call<Array<ImagePreview>>,
+                response: Response<Array<ImagePreview>>
             ) {
                 val callback = response.body()
 
@@ -43,7 +43,7 @@ class Network: NetworkAPI {
                 handler.sendMessage(message)
             }
 
-            override fun onFailure(call: Call<Array<Carousel>>, t: Throwable) {
+            override fun onFailure(call: Call<Array<ImagePreview>>, t: Throwable) {
                 message.arg1 = -1
                 handler.sendMessage(message)
             }
@@ -78,10 +78,10 @@ class Network: NetworkAPI {
 
     override fun getSimilar(handler: Handler) {
         val message = Message()
-        task.getSimilar().enqueue(object: Callback<Array<Carousel>> {
+        task.getSimilar().enqueue(object: Callback<Array<ImagePreview>> {
             override fun onResponse(
-                call: Call<Array<Carousel>>,
-                response: Response<Array<Carousel>>
+                call: Call<Array<ImagePreview>>,
+                response: Response<Array<ImagePreview>>
             ) {
                 val callback = response.body()
 
@@ -95,7 +95,7 @@ class Network: NetworkAPI {
                 handler.sendMessage(message)
             }
 
-            override fun onFailure(call: Call<Array<Carousel>>, t: Throwable) {
+            override fun onFailure(call: Call<Array<ImagePreview>>, t: Throwable) {
                 message.arg1 = -1
                 handler.sendMessage(message)
             }

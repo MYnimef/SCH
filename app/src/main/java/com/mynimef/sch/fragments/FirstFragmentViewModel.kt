@@ -5,19 +5,19 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.mynimef.sch.repository.Repository
 import com.mynimef.sch.models.BookInfo
-import com.mynimef.sch.models.Carousel
+import com.mynimef.sch.models.ImagePreview
 
 class FirstFragmentViewModel: ViewModel() {
 
-    private val carousel = MutableLiveData<Array<Carousel>>()
+    private val imagePreview = MutableLiveData<Array<ImagePreview>>()
     private val bestSellers = MutableLiveData<Array<BookInfo>>()
 
     init {
         update()
     }
 
-    fun getCarousel(): LiveData<Array<Carousel>> {
-        return carousel
+    fun getCarousel(): LiveData<Array<ImagePreview>> {
+        return imagePreview
     }
 
     fun getBestSellers(): LiveData<Array<BookInfo>> {
@@ -25,7 +25,7 @@ class FirstFragmentViewModel: ViewModel() {
     }
 
     fun update() {
-        Repository.getCarousel(carousel)
+        Repository.getCarousel(imagePreview)
         Repository.getBestSellers(bestSellers)
     }
 }

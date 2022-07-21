@@ -4,18 +4,18 @@ import android.os.Handler
 import android.os.Looper
 import androidx.lifecycle.MutableLiveData
 import com.mynimef.sch.models.BookInfo
-import com.mynimef.sch.models.Carousel
+import com.mynimef.sch.models.ImagePreview
 
 
 object Repository {
 
     private val network: NetworkAPI = Network()
 
-    fun getCarousel(data: MutableLiveData<Array<Carousel>>) {
+    fun getCarousel(data: MutableLiveData<Array<ImagePreview>>) {
         val handler = Handler(Looper.getMainLooper()) {
             val res = it.arg1
             if (res == 0) {
-                data.postValue(it.obj as Array<Carousel>)
+                data.postValue(it.obj as Array<ImagePreview>)
             } else if (res == 1) {
 
             } else {
@@ -39,11 +39,11 @@ object Repository {
         network.getBestSellers(handler)
     }
 
-    fun getSimilar(data: MutableLiveData<Array<Carousel>>) {
+    fun getSimilar(data: MutableLiveData<Array<ImagePreview>>) {
         val handler = Handler(Looper.getMainLooper()) {
             val res = it.arg1
             if (res == 0) {
-                data.postValue(it.obj as Array<Carousel>)
+                data.postValue(it.obj as Array<ImagePreview>)
             } else if (res == 1) {
 
             } else {
